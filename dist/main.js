@@ -431,7 +431,6 @@ var RabbitMqSubscriber = /** @class */ (function () {
     }
     RabbitMqSubscriber.prototype.subscribe = function (queue, action) {
         var _this = this;
-        console.log('queue',queue)
         var queueConfig = common_1.asPubSubQueueNameConfig(queue);
         return this.connectionFactory.create()
             .then(function (connection) { return connection.createChannel(); })
@@ -479,7 +478,6 @@ var RabbitMqSubscriber = /** @class */ (function () {
     RabbitMqSubscriber.prototype.getChannelSetup = function (channel, queueConfig) {
         return __awaiter(this, void 0, void 0, function () {
             var result;
-            console.log('queueConfig.exType',queueConfig.exType)
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, channel.assertExchange(queueConfig.dlx, queueConfig.exType, this.getDLSettings())];
