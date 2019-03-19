@@ -63,9 +63,9 @@ export class RabbitMqSubscriber {
     }
 
      protected async getChannelSetup(channel: amqp.Channel, queueConfig: IQueueNameConfig) {
-           await channel.assertExchange(queueConfig.dlx, 'fanout', this.getDLSettings());
+           await channel.assertExchange(queueConfig.dlx, queueConfig.exType , this.getDLSettings());
            let result =  await channel.assertQueue(queueConfig.dlq, this.getQueueSettings(queueConfig.dlx));
-           await channel.bindQueue(result.queue, queueConfig.dlx, '');
+           await channel.bindQueue(result.queue, queueConfig.dlx, queueConfig.bindKey);
            return result.queue;
     }
 

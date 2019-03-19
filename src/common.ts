@@ -2,23 +2,33 @@ export interface IQueueNameConfig {
   name: string;
   dlq: string;
   dlx: string;
+  exType: string;
+  bindKey: string;
 }
 
 export class DefaultQueueNameConfig implements IQueueNameConfig{
   dlq: string;
   dlx: string;
+  exType: string;
+  bindKey: string;
   constructor(public name: string){
     this.dlq = `${name}.DLQ`;
-    this.dlx = `${this.dlq}.Exchange`
+    this.dlx = `${this.dlq}.Exchange`;
+    this.exType = 'fanout';
+    this.bindKey = '';
   }
 }
 
 export class DefaultPubSubQueueConfig implements IQueueNameConfig{
   dlq: string;
   dlx: string;
+  exType: string;
+  bindKey: string;
   constructor(public name: string){
     this.dlq = '';
     this.dlx = `${name}.DLQ.Exchange`
+    this.exType = 'fanout';
+    this.bindKey = '';
   }
 }
 
